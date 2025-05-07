@@ -1,173 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Profile - JPS Club</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-    }
-    .container {
-      display: flex;
-      max-width: 1000px;
-      margin: 20px auto;
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .left-panel {
-      width: 300px;
-      background: linear-gradient(135deg, #8A76D0, #5A4FCF);
-      color: white;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .member-card {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      margin-bottom: 20px;
-      width: 100%;
-    }
-    .qr-code {
-      background: white;
-      padding: 10px;
-      margin-bottom: 20px;
-    }
-    .button {
-      background: #5A4FCF;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    .points-box {
-      background: white;
-      color: black;
-      padding: 10px;
-      border-radius: 5px;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-    }
-    .right-panel {
-      flex: 1;
-      padding: 20px;
-    }
-    h2 {
-      margin-top: 0;
-    }
-    .form-section {
-      background: #eee;
-      padding: 10px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .update-btn {
-      background: black;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPS Club - Member Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: #000;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+            font-size: 12px;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .user-info h2 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .user-info p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            width: 30%;
+        }
+        
+        .main-content {
+            width: 70%;
+        }
+        
+        .membership-card {
+            background: linear-gradient(135deg, #a374db, #4a6cd3);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .membership-id {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .status {
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .member-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .expiry-date {
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .card-logo {
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .qr-code img {
+            width: 120px;
+            height: 120px;
+            border: 1px solid #ccc;
+        }
+        
+        .qr-code p {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .points-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .points-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .points-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-right: 10px;
+        }
+        
+        .points-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .spending-info {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            height: 5px;
+            background-color: #eee;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0%;
+            background-color: #4a6cd3;
+        }
+        
+        .upgrade-info {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .membership-link {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            text-decoration: none;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            border-bottom: 2px solid #4a6cd3;
+            font-weight: bold;
+        }
+        
+        .points-message {
+            background-color: #f9f9f9;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-section {
+            margin-bottom: 20px;
+        }
+        
+        .section-header {
+            background-color: #777;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8.825L1.175 4 2.05 3.125 6 7.075 9.95 3.125 10.825 4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+        
+        .date-input {
+            position: relative;
+        }
+        
+        .date-input input {
+            padding-right: 30px;
+        }
+        
+        .date-input::after {
+            content: "📅";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        
+        .update-btn {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            cursor: pointer;
+            float: right;
+        }
+        
+        .contact-info {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .logout {
+            float: right;
+            font-size: 14px;
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
 </head>
 <body>
-
-<div class="container">
-  <div class="left-panel">
-    <div class="member-card">
-      <p><strong>MEMBER ID:</strong> LM9008374</p>
-      <p><strong>STATUS:</strong> JPS</p>
-      <p>PASSAKORN PONGSANGIAMTEST</p>
+    <header>
+        <div class="logo">JPS CLUB</div>
+        <nav class="nav">
+            <a href="#">About JPS Club</a>
+            <a href="#">Member Benefits</a>
+            <a href="#">Promotions</a>
+            <a href="#">What's New</a>
+            <a href="#">Contact Us</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <a href="#" class="logout">🔒 LOG OUT</a>
+        <div class="profile-header">
+            <div class="avatar">
+                <span>👤</span>
+            </div>
+            <div class="user-info">
+                <h2>Good Afternoon, Passakorn Pongsangiamtest</h2>
+                <p>Last Log-in: 17/05/2023 01:09 PM</p>
+            </div>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="sidebar">
+                <div class="membership-card">
+                    <div class="membership-id">MEMBERSHIP ID: 1347M00074</div>
+                    <div class="status">STATUS: JPS</div>
+                    <div class="member-name">PASSAKORN PONGSANGIAMTEST</div>
+                    <div class="expiry-date">EXPIRE DATE: 07/05/2025</div>
+                    <div class="card-logo">JPS</div>
+                </div>
+                
+                <div class="qr-code">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVHhe7doxTsNAFEXRMaKhpGYLbIFVM1CwKrYAW6CmoqGMRopkWf7JvO/nFD7KK987xSgZ7h6fXt5G+LO6vhkO+6fD/vn1dHwfZ9fr9TgcP8bT6XPsdrvxdf+YHmQrpxDX63V8fh3H4+f4dT7/hDifP8bpPMbT+8d4c3s3Pcg2pq+M7+/vcTweU4Ds6PXlNkXIjlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOwsBcjOUoDsLAXIzlKA7CwFyM5SgOxsGIZfB4wJNs/JyPEAAAAASUVORK5CYII=" alt="QR Code">
+                    <p>Scan QR Code or show this code to our staff</p>
+                </div>
+                
+                <div class="points-box">
+                    <div class="points-header">
+                        <div class="points-icon">J</div>
+                        <div>JPS POINTS</div>
+                    </div>
+                    <div class="points-value">0</div>
+                    <div class="spending-info">YOUR SPENDING WITHIN Jaspal Public Company Limited</div>
+                    <div class="spending-info">0 / 7,500 THB</div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="upgrade-info">Spend 7,500 THB to upgrade to JPS Plus membership</div>
+                    <a href="#" class="membership-link">*JPS CLUB MEMBERSHIP CONDITIONS AND MEMBERSHIP STATUS MAINTENANCE</a>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="tabs">
+                    <div class="tab active">MY PROFILE</div>
+                    <div class="tab">MY REWARDS</div>
+                    <div class="tab">HISTORY</div>
+                </div>
+                
+                <div class="points-message">*COMPLETE YOUR INFORMATION AND GET ADDITIONAL 25 POINTS</div>
+                
+                <div class="form-section">
+                    <div class="section-header">PERSONAL INFORMATION</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <select>
+                                <option>SELECT TITLE</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Given Name (First Name & Middle Name)*</label>
+                            <input type="text" placeholder="Passakorn">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Family Name*</label>
+                            <input type="text" placeholder="Pongsangiamtest">
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <div class="date-input">
+                                <input type="text" placeholder="DD/MM/YYYY">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select>
+                                <option>MALE</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Country of residence*</label>
+                            <select>
+                                <option>SELECT COUNTRY OF RESIDENCE</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="section-header">CONTACT INFORMATION</div>
+                    <div class="contact-info">You can use a verified mobile number and email address to login to member account</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>E-mail*</label>
+                            <input type="email" placeholder="jump@digital.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Phone*</label>
+                            <input type="text" placeholder="66890001111">
+                            <button class="update-btn">UPDATE</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="section-header">ADDRESS INFORMATION</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>State/Province/Territory*</label>
+                            <select>
+                                <option>SELECT PROVINCE</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>House No./Village/Building*</label>
+                            <input type="text" placeholder="ENTER ADDRESS">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Road/Soi/Alley*</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>District*</label>
+                            <input type="text">
+                            <button class="update-btn">UPDATE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="qr-code">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LM9008374" alt="QR Code">
-    </div>
-    <button class="button" onclick="joinOriWellness()">JOIN ORI WELLNESS SUB-TIER</button>
-    <div class="points-box">
-      <p>JPS POINTS: <strong>0</strong></p>
-      <p>YOUR SPENDING WITHIN Jaspal Public Company Limited</p>
-      <p><strong>0 / 7,500 THB</strong></p>
-    </div>
-  </div>
-  <div class="right-panel">
-    <h2>My Profile</h2>
-    <p><strong>*COMPLETE YOUR INFORMATION, AND GET ADDITIONAL 25 POINTS</strong></p>
-    
-    <div class="form-section">PERSONAL INFORMATION</div>
-    
-    <label for="title">Select Title</label>
-    <select id="title">
-      <option value="">SELECT TITLE</option>
-      <option value="Mr.">Mr.</option>
-      <option value="Ms.">Ms.</option>
-    </select>
-    
-    <label for="givenName">Given Name</label>
-    <input type="text" id="givenName" value="Passakorn">
-    
-    <label for="familyName">Family Name</label>
-    <input type="text" id="familyName" value="Pongsangiamtest">
-    
-    <label for="gender">Gender</label>
-    <select id="gender">
-      <option value="Male" selected>Male</option>
-      <option value="Female">Female</option>
-    </select>
-    
-    <label for="dob">Date of Birth</label>
-    <input type="date" id="dob">
-    
-    <label for="country">Country of Residence</label>
-    <select id="country">
-      <option value="">SELECT COUNTRY</option>
-      <option value="Thailand">Thailand</option>
-    </select>
-    
-    <div class="form-section">CONTACT INFORMATION</div>
-    
-    <label for="email">Email</label>
-    <input type="email" id="email" value="jumppp@gmail.com">
-    <button class="update-btn">UPDATE</button>
-    
-    <label for="phone">Mobile Phone</label>
-    <input type="text" id="phone" value="66860001111">
-    <button class="update-btn">UPDATE</button>
-  </div>
-</div>
-
-<script>
-  function joinOriWellness() {
-    alert("You have successfully joined ORI Wellness Sub-Tier!");
-  }
-</script>
-
 </body>
 </html>
